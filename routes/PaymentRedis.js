@@ -4,7 +4,10 @@ var uuid = require('uuid');
 var redis = require("redis")
 var Promise = require("bluebird");
 
-client = redis.createClient(6379,"192.168.99.100");
+redisIP = "192.168.99.100";
+reditPort = 6379
+
+client = redis.createClient(reditPort,redisIP);
 
 Promise.promisifyAll(redis.RedisClient.prototype);
 Promise.promisifyAll(redis.Multi.prototype);
