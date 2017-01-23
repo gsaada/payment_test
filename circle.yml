@@ -1,0 +1,19 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build --rm=false -t rollout/Dsymprocessor .
+
+test:
+  override:
+    - docker run -d -p rollout/Dsymprocessor
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e gal@rollout.io -u galrollout -p Gal_saada2@Docker
+      - docker push rollout/Dsymprocessor
