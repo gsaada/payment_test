@@ -4,7 +4,7 @@ machine:
 
 dependencies:
   override:
-    - docker login -e gal@rollout.io -u galrollout -p Gal_saada2@Docker
+    - docker login -u ROLLOUT_DOCKER_USR  -p ROLLOUT_DOCKER_PASS
     - docker info
     - docker build --rm=false -t rollout/dsymprocessor .
 
@@ -16,5 +16,5 @@ deployment:
   hub:
     branch: master
     commands:
-      - docker login -e gal@rollout.io -u galrollout -p Gal_saada2@Docker
+      - docker login -u ROLLOUT_DOCKER_USR -p ROLLOUT_DOCKER_PASS
       - docker push rollout/dsymprocessor
