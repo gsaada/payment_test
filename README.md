@@ -8,6 +8,5 @@ after clone:
 	linux:
 		DEBUG=myapp:* & npm start
 4. Have fun
-5. test!
 		
 
