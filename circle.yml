@@ -6,7 +6,7 @@ dependencies:
   override:
     - docker login -e $ROLLOUT_DOCKER_MAIL -u $ROLLOUT_DOCKER_USR  -p $ROLLOUT_DOCKER_PASS
     - docker info
-    - docker build --rm=false -t rollout/dsymprocessor .
+    - docker build --rm=false -t rollout/dsymprocessor:$CI_PULL_REQUEST .
 
 test:
   override:
