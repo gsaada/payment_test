@@ -6,7 +6,7 @@ dependencies:
   override:
     - docker login -e $ROLLOUT_DOCKER_MAIL -u $ROLLOUT_DOCKER_USR  -p $ROLLOUT_DOCKER_PASS
     - docker info
-    - docker build --rm=false -t rollout/dsymprocessor:$CIRCLE_BRANCH .
+    - docker build --rm=false -t rollout/dsymprocessor:$CI_PULL_REQUESTS .
 
 test:
   override:
@@ -17,4 +17,4 @@ deployment:
     branch: master
     commands:
       - docker login -e $ROLLOUT_DOCKER_MAIL -u $ROLLOUT_DOCKER_USR -p $ROLLOUT_DOCKER_PASS
-      - docker push rollout/dsymprocessor:$CIRCLE_BRANCH
+      - docker push rollout/dsymprocessor:$CI_PULL_REQUESTS
