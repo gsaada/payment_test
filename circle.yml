@@ -10,7 +10,7 @@ dependencies:
 
 test:
   override:
-    - docker run -d -p rollout/dsymprocessor
+    - docker run -d rollout/dsymprocessor
 
 deployment:
   hub:
