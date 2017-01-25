@@ -7,15 +7,15 @@ machine:
 dependencies:
   override:
     - pwd
-    - ./payment_test/circle-docker.sh env
-    - ./payment_test/circle-docker.sh build rollout/dsymprocessor
+    - ./circle-docker.sh env
+    - ./circle-docker.sh build rollout/dsymprocessor
 
 test:
   post:
-          - ./payment_test/circle-docker.sh run rollout/dsyprocessor
+          - ./circle-docker.sh run rollout/dsyprocessor
 
 deployment:
   hub:
     branch: master
     commands:
-            - ./payment_test/circle-docker.sh push rollout/dsymprocessor
+            - ./circle-docker.sh push rollout/dsymprocessor
