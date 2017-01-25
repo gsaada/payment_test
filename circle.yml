@@ -1,18 +1,20 @@
 machine:
   services:
     - docker
+    - sudo mv ./payment_test/circle-docker.sh ../
+    - sudo chmod 0755 circle-docker.sh
 
 dependencies:
   override:
-    - circle-docker env
-    - circle-docker build rollout/dsymprocessor
+    - circle-docker.sh env
+    - circle-docker.sh build rollout/dsymprocessor
 
 test:
   post:
-          - circle-docker run rollout/dsyprocessor
+          - circle-docker.sh run rollout/dsyprocessor
 
 deployment:
   hub:
     branch: master
     commands:
-            - circle-docker push rollout/dsymprocessor
+            - circle-docker.sh push rollout/dsymprocessor
