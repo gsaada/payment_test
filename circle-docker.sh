@@ -63,10 +63,6 @@ do_cached_build(){
   fi
 
   do_build
-
-  do_debug "Caching image for ${DOCKER_IMAGE}"
-  mkdir -p ~/docker
-  docker save ${DOCKER_IMAGE}:${CIRCLE_SHA1} > ~/docker/${NEW_DOCKER_IMAGE}.tar
 }
 
 do_build(){
