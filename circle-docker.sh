@@ -47,9 +47,9 @@ do_check(){
   fi
 }
 
-do_cached_build(){
+#do_cached_build(){
   # Use Circle's cache to improve build time
-}
+#}
 
 do_build(){
   # Build Docker image with Docker tag as CircleCI build number
