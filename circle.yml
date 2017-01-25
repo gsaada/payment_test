@@ -4,19 +4,15 @@ machine:
 
 dependencies:
   override:
-    - docker login -e $ROLLOUT_DOCKER_MAIL -u $ROLLOUT_DOCKER_USR  -p $ROLLOUT_DOCKER_PASS
-    - docker info
-    - docker build --rm=false -t rollout/dsymprocessor:$CIRCLE_SHA1 .
+    - circle-docker env
+    - circle-docker build rollout/dsymprocessor
 
 test:
   post:
-          - docker run -d rollout/dsymprocessor:$CIRCLE_SHA1
-          - curl --retry 10 --retry-delay 5 -v http://localhost:9090/
-
+          - circle-docker run rollout/dsyprocessor
 
 deployment:
   hub:
     branch: master
     commands:
-      - docker login -e $ROLLOUT_DOCKER_MAIL -u $ROLLOUT_DOCKER_USR -p $ROLLOUT_DOCKER_PASS
-      - docker push rollout/dsymprocessor:$CIRCLE_SHA1
+            - circle-docker push rollout/dsymprocessor
