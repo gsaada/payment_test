@@ -7,15 +7,15 @@ machine:
 
 dependencies:
   override:
-    - circle-docker.sh env
-    - circle-docker.sh build rollout/dsymprocessor
+    - ./circle-docker.sh env
+    - ./circle-docker.sh build rollout/dsymprocessor
 
 test:
   post:
-          - circle-docker.sh run rollout/dsyprocessor
+          - ./circle-docker.sh run rollout/dsyprocessor
 
 deployment:
   hub:
     branch: master
     commands:
-            - circle-docker.sh push rollout/dsymprocessor
+            - ./circle-docker.sh push rollout/dsymprocessor
