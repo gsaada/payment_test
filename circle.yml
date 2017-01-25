@@ -6,15 +6,17 @@ dependencies:
   override:
     - docker login -e $ROLLOUT_DOCKER_MAIL -u $ROLLOUT_DOCKER_USR  -p $ROLLOUT_DOCKER_PASS
     - docker info
-    - docker build --rm=false -t rollout/dsymprocessor:$CIRCLE_BUILD_NUM .
+    - docker build --rm=false -t rollout/dsymprocessor:$CIRCLE_SHA1 .
 
 test:
-  override:
+  post:
     - docker run -d rollout/dsymprocessor
+    - curl --retry 10 --retry-delay 5 -v http://localhost:9090
+
 
 deployment:
   hub:
     branch: master
     commands:
       - docker login -e $ROLLOUT_DOCKER_MAIL -u $ROLLOUT_DOCKER_USR -p $ROLLOUT_DOCKER_PASS
-      - docker push rollout/dsymprocessor:$CIRCLE_BUILD_NUM
+      - docker push rollout/dsymprocessor:$CIRCLE_SHA1
