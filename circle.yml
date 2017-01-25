@@ -5,6 +5,8 @@ machine:
     - docker
 
 dependencies:
+  cache_directories:
+    - "~/docker"
   override:
     - ./circle-docker.sh env
     - ./circle-docker.sh cached_build rollout/dsymprocessor
