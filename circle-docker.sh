@@ -60,7 +60,6 @@ do_run(){
   do_check DOCKER_IMAGE
   do_debug "Running ${DOCKER_IMAGE}:${CIRCLE_SHA1}"
   docker run -d ${DOCKER_IMAGE}:${CIRCLE_SHA1}
-  curl --retry 10 -retry-delay 5 -v http://localhost.rollout.io:3000
 }
 
 do_push(){
