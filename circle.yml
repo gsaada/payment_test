@@ -6,7 +6,6 @@ machine:
 
 dependencies:
   override:
-    - pwd
     - ./circle-docker.sh env
     - ./circle-docker.sh build rollout/dsymprocessor
 

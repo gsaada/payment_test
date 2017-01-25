@@ -82,9 +82,9 @@ do_push(){
 }
 
 do_login(){
-  do_check DOCKER_USER
-  do_check DOCKER_PASSWORD
-  do_check DOCKER_EMAIL
+  do_check ROLLOUT_DOCKER_USR
+  do_check ROLLOUT_DOCKER_PASS
+  do_check ROLLOUT_DOCKER_MAIL
 
   docker login -u ${ROLLOUT_DOCKER_USR} -p ${ROLLOUT_DOCKER_PASS} -e ${ROLLOUT_DOCKER_MAIL}
 }
