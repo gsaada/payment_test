@@ -50,12 +50,23 @@ do_check(){
 do_cached_build(){
   # Use Circle's cache to improve build time
   do_check DOCKER_IMAGE
-  local NEW_DOCKER_IMAGE = ${DOCKER_IMAGE} | tr '/' '-'
+  local NEW_DOCKER_IMAGE='saada'
+  #local NEW_DOCKER_IMAGE= echo ${DOCKER_IMAGE} | tr '/' '-'
+  do_debug "saaaaaaaaaaaaaddddddddd ${NEW_DOCKER_IMAGE}"
 
-  do_debug "Pulling latest image for  ${DOCKER_IMAGE}"
-  docker pull ${DOCKER_IMAGE}:latest
+
+  if [ -e ~/docker/${NEW_DOCKER_IMAGE}.tar ]; then
+    do_debug "Restoring image cache for ${DOCKER_IMAGE}"
+    docker load -i ~/docker/${NEW_DOCKER_IMAGE}.tar
+  else
+    do_debug "No cache image found for ${DOCKER_IMAGE}, continuing without"
+  fi
 
   do_build
+
+  do_debug "Caching image for ${NEW_DOCKER_IMAGE}"
+  mkdir -p ~/docker
+  docker save ${DOCKER_IMAGE}:${CIRCLE_SHA1} > ~/docker/${NEW_DOCKER_IMAGE}.tar
 }
 
 do_build(){
