@@ -47,9 +47,23 @@ do_check(){
   fi
 }
 
-#do_cached_build(){
+do_cached_build(){
   # Use Circle's cache to improve build time
-#}
+  do_check DOCKER_IMAGE
+
+  if [-e ~/docker/${DOCKER_IMAGE}.tar ]; then
+    do_debug "Restoring image cache fo ${DOCKER_IMAGE}"
+    docker load -i ~/docker/${DOCKER_IMAGE}.tar
+  else
+    do_debug "No cache image found for ${DOCKER_IMAGE}, continuing without"
+  fi
+
+  do_build
+
+  do_debug "Caching image for ${DOCKER_IMAGE}"
+  mkdir -p ~/docker
+  docker save ${DOCKER_IMAGE}:${CIRCLE_SHA1} > ~/docker/${DOCKER_IMAGE}.tar
+}
 
 do_build(){
   # Build Docker image with Docker tag as CircleCI build number
@@ -79,7 +93,7 @@ do_push(){
   do_info "Pushing ${NUMBERED_BUILD}"
   docker push ${NUMBERED_BUILD}
 
-  Tag the image as latest
+  #Tag the image as latest
   local LATEST_BUILD=${DOCKER_IMAGE}:latest
   do_debug "Tagging ${NUMBERED_BUILD} as ${LATEST_BUILD}"
   docker tag ${NUMBERED_BUILD} ${LATEST_BUILD}
