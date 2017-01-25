@@ -12,6 +12,8 @@ dependencies:
   override:
     - ./circle-docker.sh env
     - ./circle-docker.sh cached_build rollout/dsymprocessor
+  cache_directories:
+    - "~/docker"
 
 test:
   post:
