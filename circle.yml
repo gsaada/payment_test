@@ -1,6 +1,6 @@
 machine:
   pre:
-    - sudo mv ./payment_test/circle-docker.sh ../
+    - sudo mv ./payment_test/circle-docker.sh ~/
     - sudo chmod 0755 circle-docker.sh
   services:
     - docker
