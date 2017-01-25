@@ -7,7 +7,7 @@ machine:
 dependencies:
   override:
     - ./circle-docker.sh env
-    - ./circle-docker.sh build rollout/dsymprocessor
+    - ./circle-docker.sh cached_build rollout/dsymprocessor
 
 test:
   post:
