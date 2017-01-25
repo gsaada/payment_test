@@ -52,7 +52,7 @@ do_cached_build(){
   do_check DOCKER_IMAGE
   local NEW_DOCKER_IMAGE='saada'
   #local NEW_DOCKER_IMAGE= echo ${DOCKER_IMAGE} | tr '/' '-'
-  do_debug "saaaaaaaaaaaaaddddddddd ${NEW_DOCKER_IMAGE}"
+  do_debug "saaaaaaaaaaaaaaaddddddddd ${NEW_DOCKER_IMAGE}"
 
 
   if [ -e ~/docker/${NEW_DOCKER_IMAGE}.tar ]; then
