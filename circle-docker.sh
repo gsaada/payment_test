@@ -50,7 +50,8 @@ do_check(){
 do_cached_build(){
   # Use Circle's cache to improve build time
   do_check DOCKER_IMAGE
-  local NEW_DOCKER_IMAGE=${DOCKER_IMAGE} | tr '/' '-'
+  local NEW_DOCKER_IMAGE= 'saada'
+  #local NEW_DOCKER_IMAGE= echo ${DOCKER_IMAGE} | tr '/' '-'
   do_debug "saaaaaaaaaaaaaddddddddd ${NEW_DOCKER_IMAGE}"
 
 
