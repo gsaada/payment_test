@@ -1,20 +1,20 @@
 machine:
+  pre:
+    - sudo chmod 0755 ./payment_test/circle-docker.sh
   services:
     - docker
 
 dependencies:
   override:
-    - docker login -e $ROLLOUT_DOCKER_MAIL -u $ROLLOUT_DOCKER_USR  -p $ROLLOUT_DOCKER_PASS
-    - docker info
-    - docker build --rm=false -t rollout/dsymprocessor:$CIRCLE_BUILD_NUM .
+    - ./circle-docker.sh env
+    - ./circle-docker.sh build rollout/dsymprocessor
 
 test:
-  override:
-    - docker run -d rollout/dsymprocessor
+  post:
+          - ./circle-docker.sh run rollout/dsymprocessor
 
 deployment:
   hub:
     branch: master
     commands:
-      - docker login -e $ROLLOUT_DOCKER_MAIL -u $ROLLOUT_DOCKER_USR -p $ROLLOUT_DOCKER_PASS
-      - docker push rollout/dsymprocessor:$CIRCLE_BUILD_NUM
+            - ./circle-docker.sh push rollout/dsymprocessor
