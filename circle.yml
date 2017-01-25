@@ -1,8 +1,9 @@
 machine:
-  services:
-    - docker
+  pre:
     - mv ./payment_test/circle-docker.sh ../
     - chmod 0755 circle-docker.sh
+  services:
+    - docker
 
 dependencies:
   override:
