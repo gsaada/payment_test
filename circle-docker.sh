@@ -73,7 +73,7 @@ do_push(){
   # Push to Docker registry
   local NUMBERED_BUILD=${DOCKER_IMAGE}:${CIRCLE_SHA1}
   do_info "Pushing ${NUMBERED_BUILD}"
-  docker push ${NUMBER_BUILD}
+  docker push ${NUMBERED_BUILD}
 
   # Push a 'latest' tag to the registry
   local LATEST_BUILD=${DOCKER_IMAGE}:latest
