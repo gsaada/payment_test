@@ -47,6 +47,10 @@ do_check(){
   fi
 }
 
+#do_cached_build(){
+  # Use Circle's cache to improve build time
+#}
+
 do_build(){
   # Build Docker image with Docker tag as CircleCI build number
   do_check DOCKER_IMAGE
@@ -70,10 +74,15 @@ do_push(){
   do_check DOCKER_IMAGE
   do_debug "Pushing and tagging ${DOCKER_IMAGE}"
 
-  # Push to Docker registry
+  # Push to Docker for this PR
   local NUMBERED_BUILD=${DOCKER_IMAGE}:${CIRCLE_SHA1}
   do_info "Pushing ${NUMBERED_BUILD}"
   docker push ${NUMBERED_BUILD}
+
+  Tag the image as latest
+  local LATEST_BUILD=${DOCKER_IMAGE}:latest
+  do_debug "Tagging ${NUMBERED_BUILD} as ${LATEST_BUILD}"
+  docker tag ${NUMBERED_BUILD} ${LATEST_BUILD}
 
   # Push a 'latest' tag to the registry
   local LATEST_BUILD=${DOCKER_IMAGE}:latest
