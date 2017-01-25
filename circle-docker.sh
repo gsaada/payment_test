@@ -86,7 +86,7 @@ do_login(){
   do_check DOCKER_PASSWORD
   do_check DOCKER_EMAIL
 
-  docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} -e ${DOCKER_EMAIL}
+  docker login -u ${ROLLOUT_DOCKER_USR} -p ${ROLLOUT_DOCKER_PASS} -e ${ROLLOUT_DOCKER_MAIL}
 }
 
 do_help(){
@@ -100,9 +100,9 @@ run   <image name>	     Run the image.
 push  <image name>           Push a build to the docker hub.
 
 This tool expects the following enviroment variables (in addition to Circle's built in ones):
-- DOCKER_USER
-- DOCKER_PASSWORD
-- DOCKER_EMAIL
+- ROLLOUT_DOCKER_USR
+- ROLLOUT_DOCKER_PASS
+- ROLLOUT_DOCKER_MAIL
 EndHelp
 }
 
