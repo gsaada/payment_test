@@ -115,7 +115,6 @@ case ${DOCKER_STEP} in
     do_run
     ;;
   push)
-    do_config
     do_push
     ;;
   env)
