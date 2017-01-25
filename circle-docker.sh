@@ -140,7 +140,7 @@ case ${DOCKER_STEP} in
     ;;
   cached_build)
     do_login
-    do cached_build
+    do_cached_build
     ;;
   run)
     do_run
