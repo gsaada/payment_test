@@ -52,18 +52,10 @@ do_cached_build(){
   do_check DOCKER_IMAGE
   local NEW_DOCKER_IMAGE = ${DOCKER_IMAGE} | tr '/' '-'
 
-  if [ -e ~/docker/${NEW_DOCKER_IMAGE}.tar ]; then
-    do_debug "Restoring image cache fo ${DOCKER_IMAGE}"
-    docker load -i ~/docker/${NEW_DOCKER_IMAGE}.tar
-  else
-    do_debug "No cache image found for ${DOCKER_IMAGE}, continuing without"
-  fi
+  do_debug "Pulling latest image for  ${DOCKER_IMAGE}"
+  docker pull ${DOCKER_IMAGE}:latest
 
   do_build
-
-  do_debug "Caching image for ${DOCKER_IMAGE}"
-  mkdir -p ~/docker
-  docker save ${DOCKER_IMAGE}:${CIRCLE_SHA1} > ~/docker/${NEW_DOCKER_IMAGE}.tar
 }
 
 do_build(){
