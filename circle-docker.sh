@@ -121,6 +121,7 @@ circle-docker - helper for pushing Docker images from CircleCI
 Commands:
 
 build <image name>           Build an image.
+cached_build <image name>    Build an image using the circle cache directory
 run   <image name>	     Run the image.
 push  <image name>           Push a build to the docker hub.
 
@@ -136,6 +137,10 @@ case ${DOCKER_STEP} in
   build)
     do_login
     do_build
+    ;;
+  cached_build)
+    do_login
+    do_cached_build
     ;;
   run)
     do_run
