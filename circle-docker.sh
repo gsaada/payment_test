@@ -50,9 +50,11 @@ do_check(){
 do_build(){
   # Build Docker image with Docker tag as CircleCI build number
   do_check DOCKER_IMAGE
-  do_info "Building ${DOCKER_IMAGE}"
+  do_info "Building docker ${DOCKER_IMAGE}"
 
   docker build -rm=false -t ${DOCKER_IMAGE}:${CIRCLE_SHA1} .
+
+  do_info "Building docker ${DOCKER_IMAGE} Succeed"
 }
 
 do_run(){
@@ -60,7 +62,7 @@ do_run(){
   do_check DOCKER_IMAGE
   do_debug "Running ${DOCKER_IMAGE}:${CIRCLE_SHA1}"
   docker run -d ${DOCKER_IMAGE}:${CIRCLE_SHA1}
-  do_info "Running ${DOCKER_IMAGE} Succeed!"
+  do_info "Running ${DOCKER_IMAGE} Succeed"
 }
 
 do_push(){
