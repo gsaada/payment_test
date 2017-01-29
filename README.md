@@ -9,4 +9,3 @@ after clone:
 		DEBUG=myapp:* & npm start
 4. Have fun
 		
-asdas
