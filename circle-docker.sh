@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -o errexit
-
+echo saada
 DOCKER_STEP=$1
 DOCKER_IMAGE=$2
 
